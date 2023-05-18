@@ -1,9 +1,9 @@
 const { db } =  require('../routes/firebase.js');
 
-async function createCountry(pais, pib, esperanzaVida, liberdadDecisiones, generosidad, corrupcion) {
+async function createCountry(pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion) {
     try {
-
-        db.collection('pais').add({pais, pib, esperanzaVida, liberdadDecisiones, generosidad, corrupcion})
+        console.log("COUNTRY EN METHODS: ", pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion);
+        db.collection('pais').add({pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion})
             .then((docRef) => {
                 // Retornar un mensaje de éxito
                 return docRef;
@@ -68,10 +68,10 @@ async function deleteCountry(id) {
 }
 
 // //UPDATE
-async function updateCountry(id, pais, pib, esperanzaVida, liberdadDecisiones, generosidad, corrupcion) {
+async function updateCountry(id, pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion) {
     try {
         // Actualizar el documento en Firestore para el usuario con los datos proporcionados
-        const result = await db.collection('pais').doc(id).update({pais, pib, esperanzaVida, liberdadDecisiones, generosidad, corrupcion});
+        const result = await db.collection('pais').doc(id).update({pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion});
 
         // Retornar un mensaje de éxito
         return result;

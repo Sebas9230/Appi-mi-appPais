@@ -9,9 +9,9 @@ const { createCountry, getAllCountries, getCountry, deleteCountry, updateCountry
 
 router.post('/create', async (req, res) => {
   try {
-    const { pais, pib, esperanzaVida, liberdadDecisiones, generosidad, corrupcion } = req.body;
+    const { pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion } = req.body;
 
-    const country = await createCountry(pais, pib, esperanzaVida, liberdadDecisiones, generosidad, corrupcion);
+    const country = await createCountry(pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion);
     res.status(201).json(country);
   } catch (error) {
     console.error(error);
@@ -60,9 +60,9 @@ router.delete("/delete/:id", async (req, res) => {
 
 router.put('/update', async (req, res) => {
   try {
-    const { id, pais, pib, esperanzaVida, liberdadDecisiones, generosidad, corrupcion } = req.body;
+    const { id, pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion } = req.body;
 
-    const result = await updateCountry(id, pais, pib, esperanzaVida, liberdadDecisiones, generosidad, corrupcion);
+    const result = await updateCountry(id, pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
