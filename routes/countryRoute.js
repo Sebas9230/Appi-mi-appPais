@@ -4,14 +4,14 @@ const express = require('express');
 const router = express.Router();
 
 //User methods
-const { createCountry, getAllCountries, getCountry, deleteCountry, updateCountry } = require('../methods/countryMethods.js');
+const { getPoverties, createCountry, getAllCountries, getCountry, deleteCountry, updateCountry } = require('../methods/countryMethods.js');
 
 
 router.post('/create', async (req, res) => {
   try {
-    const { pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion } = req.body;
+    const { pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion, poblacionMetroCuadrado, dimensionPais } = req.body;
 
-    const country = await createCountry(pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion);
+    const country = await createCountry(pais, pib, esperanzaVida, libertadDecisiones, generosidad, corrupcion, poblacionMetroCuadrado, dimensionPais);
     res.status(201).json(country);
   } catch (error) {
     console.error(error);
@@ -27,6 +27,17 @@ router.get('/', async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send('Error getting all countries');
+  }
+});
+
+router.get('/poverty', async (req, res) => {
+  try {
+    const poverties = await getPoverties();
+    console.log("getPoverties: ", poverties);
+    res.status(201).json(poverties);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error getting all poverties');
   }
 });
 
